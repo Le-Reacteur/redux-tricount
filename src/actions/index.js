@@ -1,11 +1,12 @@
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 
-export const addExpense = (amount, description) => {
+export const addExpense = (userId, amount, description) => {
   return {
     type: ADD_EXPENSE,
     payload: {
       amount,
       description,
+      userId,
     },
   };
 };
