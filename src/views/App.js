@@ -11,7 +11,6 @@ import { User } from '../components/User';
 import { NewExpenseForm } from './NewExpenseForm';
 import { removeExpense } from '../actions';
 import { CenteredText } from '../components/CenteredText';
-import { Amount } from '../components/Amount';
 
 const mapStateToProps = state => ({
   expenses: selectExpenses(state),
