@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
-// Note Milligram is small CSS theme
+// Milligram is small CSS theme
 import 'milligram';
 import './index.css';
 import { App } from './views/App';
