@@ -4,8 +4,16 @@ import { Button } from '../components/Button';
 import { ButtonContainer } from '../components/ButtonContainer';
 import { Input } from '../components/Input';
 import { extractDataFromSubmitEvent, clearFormFromSubmitEvent, Validator } from '../utils';
+import { addExpense } from '../actions';
+import { connect } from 'react-redux';
 
-export const NewExpenseForm = () => {
+const mapStateToProps = null;
+
+const mapDispatchToProps = {
+  addExpense,
+};
+
+const NewExpenseFormRender = ({ addExpense }) => {
   return (
     <form
       onSubmit={e => {
@@ -23,7 +31,7 @@ export const NewExpenseForm = () => {
           alert(validated.error);
           return;
         }
-        console.log(validated.value);
+        addExpense(validated.value.amount, validated.value.description);
         clearFormFromSubmitEvent(e);
       }}
     >
@@ -37,3 +45,5 @@ export const NewExpenseForm = () => {
     </form>
   );
 };
+
+export const NewExpenseForm = connect(mapStateToProps, mapDispatchToProps)(NewExpenseFormRender);
