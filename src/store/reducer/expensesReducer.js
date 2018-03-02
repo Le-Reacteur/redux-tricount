@@ -1,4 +1,4 @@
-import { ADD_EXPENSE } from '../../actions';
+import { ADD_EXPENSE, REMOVE_EXPENSE } from '../../actions';
 
 const randomAmount = () => Math.floor(Math.random() * 10000) / 100;
 
@@ -29,6 +29,8 @@ export const expensesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_EXPENSE:
       return [...state, action.payload];
+    case REMOVE_EXPENSE:
+      return state.filter((expense, index) => index !== action.payload);
     default:
       return state;
   }
