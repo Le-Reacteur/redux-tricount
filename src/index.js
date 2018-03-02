@@ -5,4 +5,4 @@ import 'normalize.css';
 import 'milligram';
 import './index.css';
 
-ReactDOM.render(<div>Hello React</div>, document.getElementById('root'));
+ReactDOM.render(<h1>Hello React</h1>, document.getElementById('root'));
