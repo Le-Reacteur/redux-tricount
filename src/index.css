@@ -134,6 +134,7 @@ p {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .expense .expense--info {
@@ -172,6 +173,30 @@ p {
   border-radius: 4rem;
   margin: 0.7rem;
   margin-left: 0;
+}
+
+.expense .expense--delete {
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  top: 50%;
+  transform: translate(20px, -50%);
+  transition-duration: 0.3s;
+}
+
+.expense:hover .expense--delete {
+  display: block;
+  transform: translate(-10px, -50%);
+  opacity: 1;
+}
+
+.expense .expense--amount {
+  transition-duration: 0.3s;
+  opacity: 1;
+}
+
+.expense:hover .expense--amount {
+  opacity: 0;
 }
 
 /* Amount */
@@ -287,4 +312,17 @@ p {
   font-weight: 400;
   letter-spacing: 0.1rem;
   padding-left: 0.2rem;
+}
+
+/* CenteredText */
+
+.centered-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 4rem;
+  font-size: 2.5rem;
+  color: #1a237e;
+  line-height: 1.6;
+  text-align: center;
 }

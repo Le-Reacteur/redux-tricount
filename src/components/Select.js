@@ -9,15 +9,14 @@ export const Select = ({ options, name, label }) => (
       </label>
     )}
     <select className="select--select" name={name}>
-      {React.Children.toArray(
-        Object.keys(options).map(optionId => <option value={optionId}>{options[optionId]}</option>)
-      )}
+      {React.Children.toArray(options.map(option => <option value={option.key}>{option.text}</option>))}
     </select>
   </div>
 );
 
 Select.propTypes = {
-  options: PropTypes.object.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({ key: PropTypes.string.isRequired, text: PropTypes.string.isRequired }))
+    .isRequired,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
 };

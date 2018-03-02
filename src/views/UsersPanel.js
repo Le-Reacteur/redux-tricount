@@ -11,6 +11,7 @@ import { Input } from '../components/Input';
 import { CustomPropTypes, selectUsersWithSum } from '../selectors';
 import { extractDataFromSubmitEvent, clearFormFromSubmitEvent } from '../utils';
 import { addUser, removeUser } from '../actions';
+import { CenteredText } from '../components/CenteredText';
 
 const mapStateToProps = state => ({
   usersWithSum: selectUsersWithSum(state),
@@ -21,37 +22,50 @@ const mapDispatchToProps = {
   removeUser,
 };
 
-const UsersPanelRender = ({ usersWithSum, addUser, removeUser }) => (
-  <Panel>
-    <Card title="Users">
-      <List>
-        {usersWithSum.map(user => (
-          <User key={user.id} name={user.name} color={user.color} sum={user.sum} onRemove={() => removeUser(user.id)} />
-        ))}
-      </List>
-    </Card>
-    <form
-      onSubmit={e => {
-        e.preventDefault();
-        const data = extractDataFromSubmitEvent(e);
-        // Validate data
-        if (!data.username) {
-          alert('No name ?');
-          return;
-        }
-        addUser(data.username);
-        clearFormFromSubmitEvent(e);
-      }}
-    >
-      <Card title="New User">
-        <Input name="username" placeholder="User name" />
+const UsersPanelRender = ({ usersWithSum, addUser, removeUser }) => {
+  const noUsers = usersWithSum.length === 0;
+  return (
+    <Panel>
+      <Card title="Users">
+        {noUsers ? (
+          <CenteredText>Use the form below to create your first user</CenteredText>
+        ) : (
+          <List>
+            {usersWithSum.map(user => (
+              <User
+                key={user.id}
+                name={user.name}
+                color={user.color}
+                sum={user.sum}
+                onRemove={() => removeUser(user.id)}
+              />
+            ))}
+          </List>
+        )}
       </Card>
-      <ButtonContainer>
-        <Button submit>Add User</Button>
-      </ButtonContainer>
-    </form>
-  </Panel>
-);
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          const data = extractDataFromSubmitEvent(e);
+          // Validate data
+          if (!data.username) {
+            alert('No name ?');
+            return;
+          }
+          addUser(data.username);
+          clearFormFromSubmitEvent(e);
+        }}
+      >
+        <Card title="New User">
+          <Input name="username" placeholder="User name" />
+        </Card>
+        <ButtonContainer>
+          <Button submit>Add User</Button>
+        </ButtonContainer>
+      </form>
+    </Panel>
+  );
+};
 
 UsersPanelRender.propTypes = {
   usersWithSum: CustomPropTypes.usersWithSum.isRequired,

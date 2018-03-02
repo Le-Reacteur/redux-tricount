@@ -12,17 +12,22 @@ export function extractDataFromSubmitEvent(event) {
 }
 
 export function clearFormFromSubmitEvent(event) {
-  return new Array(100)
+  const elems = new Array(100)
     .fill(null)
     .map((v, index) => {
       return event.target[index] || null;
     })
-    .filter(v => v !== null && v.name !== '')
-    .forEach(elem => {
-      if (elem.nodeName.toLowerCase() === 'input' && elem.type === 'text') {
-        elem.value = '';
-      }
-    });
+    .filter(v => v !== null && v.name !== '');
+
+  elems.forEach(elem => {
+    if (elem.nodeName.toLowerCase() === 'input' && elem.type === 'text') {
+      elem.value = '';
+    }
+  });
+
+  if (elems[0]) {
+    elems[0].focus();
+  }
 }
 
 export const getRandomColor = () => {

@@ -15,7 +15,7 @@ export const addUser = userName => {
   };
 };
 
-export const REMOVE_USER = 'DELETE_USER';
+export const REMOVE_USER = 'REMOVE_USER';
 
 export const removeUser = userId => ({ type: REMOVE_USER, payload: userId });
 
@@ -31,3 +31,7 @@ export const addExpense = (userId, amount, description) => {
     },
   };
 };
+
+export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
+
+export const removeExpense = expenseIndex => ({ type: REMOVE_EXPENSE, payload: expenseIndex });

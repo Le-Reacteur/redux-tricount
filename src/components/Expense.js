@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Amount } from './Amount';
+import { Button } from './Button';
 
-export const Expense = ({ amount, description, userName, userColor }) => {
+export const Expense = ({ amount, description, userName, userColor, onRemove }) => {
   return (
     <div className="expense">
       <div className="expense--info">
@@ -12,7 +13,12 @@ export const Expense = ({ amount, description, userName, userColor }) => {
           <p className="expense--user-text">{userName}</p>
         </div>
       </div>
-      <Amount value={amount} />
+      <Amount className={onRemove ? 'user--amount' : ''} value={amount} />
+      {onRemove && (
+        <Button flatStyle dangerStyle className="expense--delete" onClick={onRemove}>
+          Delete
+        </Button>
+      )}
     </div>
   );
 };
@@ -22,4 +28,5 @@ Expense.propTypes = {
   description: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   userColor: PropTypes.string.isRequired,
+  onRemove: PropTypes.func,
 };

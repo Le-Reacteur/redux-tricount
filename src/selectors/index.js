@@ -25,9 +25,18 @@ const expensesWithUser = PropTypes.arrayOf(expenseWithUser);
 
 const usersNameById = PropTypes.objectOf(PropTypes.string.isRequired);
 
+const users = PropTypes.arrayOf(
+  PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  })
+);
+
 export const CustomPropTypes = {
   userWithSum,
   usersWithSum,
+  users,
   expenseWithUser,
   expensesWithUser,
   usersNameById,
