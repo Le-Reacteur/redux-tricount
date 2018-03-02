@@ -13,7 +13,7 @@ export const User = ({ name, sum, color, onRemove }) => {
     <div className="user">
       <div className="user--img" style={{ background: color }} />
       <p className="user--name">{name}</p>
-      {sum && <Amount value={sum} className={onRemove ? 'user--amount' : ''} />}
+      {sum !== undefined && <Amount value={sum} className={onRemove ? 'user--amount' : ''} />}
       {onRemove && (
         <Button flatStyle dangerStyle className="user--delete" onClick={onRemove}>
           Delete
