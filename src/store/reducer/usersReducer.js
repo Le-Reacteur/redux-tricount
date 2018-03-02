@@ -1,4 +1,5 @@
 import { uniqueId, getRandomColor } from '../../utils';
+import { REMOVE_USER } from '../../actions';
 
 export const initialState = [
   {
@@ -19,5 +20,10 @@ export const initialState = [
 ];
 
 export const usersReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case REMOVE_USER:
+      return state.filter(user => user.id !== action.payload);
+    default:
+      return state;
+  }
 };

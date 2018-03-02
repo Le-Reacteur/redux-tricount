@@ -9,7 +9,7 @@ import { List } from '../components/List';
 import { Expense } from '../components/Expense';
 import { User } from '../components/User';
 import { NewExpenseForm } from './NewExpenseForm';
-import { removeExpense } from '../actions';
+import { removeExpense, removeUser } from '../actions';
 import { CenteredText } from '../components/CenteredText';
 
 const mapStateToProps = state => ({
@@ -19,9 +19,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   removeExpense,
+  removeUser,
 };
 
-const AppRender = ({ expensesWithUser, removeExpense, usersWithSum }) => {
+const AppRender = ({ expensesWithUser, removeExpense, usersWithSum, removeUser }) => {
   const noExpenses = expensesWithUser.length === 0;
   const noUsers = usersWithSum.length === 0;
   return (
@@ -32,7 +33,15 @@ const AppRender = ({ expensesWithUser, removeExpense, usersWithSum }) => {
             <CenteredText>You don't have any users, use the form below to add one</CenteredText>
           ) : (
             <List>
-              {usersWithSum.map(user => <User key={user.id} name={user.name} color={user.color} sum={user.sum} />)}
+              {usersWithSum.map(user => (
+                <User
+                  key={user.id}
+                  name={user.name}
+                  color={user.color}
+                  sum={user.sum}
+                  onRemove={() => removeUser(user.id)}
+                />
+              ))}
             </List>
           )}
         </Card>
@@ -81,6 +90,7 @@ AppRender.propTypes = {
     })
   ).isRequired,
   removeExpense: PropTypes.func.isRequired,
+  removeUser: PropTypes.func.isRequired,
 };
 
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppRender);
