@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { selectExpenses, selectUsers } from '../selectors';
+import { selectExpensesWithUser, selectUsers } from '../selectors';
 import { Panels } from '../components/Panels';
 import { Panel } from '../components/Panel';
 import { Card } from '../components/Card';
@@ -13,7 +13,7 @@ import { removeExpense } from '../actions';
 import { CenteredText } from '../components/CenteredText';
 
 const mapStateToProps = state => ({
-  expenses: selectExpenses(state),
+  expensesWithUser: selectExpensesWithUser(state),
   users: selectUsers(state),
 });
 
@@ -21,8 +21,8 @@ const mapDispatchToProps = {
   removeExpense,
 };
 
-const AppRender = ({ expenses, removeExpense, users }) => {
-  const noExpenses = expenses.length === 0;
+const AppRender = ({ expensesWithUser, removeExpense, users }) => {
+  const noExpenses = expensesWithUser.length === 0;
   const noUsers = users.length === 0;
   return (
     <Panels>
@@ -41,11 +41,13 @@ const AppRender = ({ expenses, removeExpense, users }) => {
             <CenteredText>You don't have any expenses, use the form below to add one</CenteredText>
           ) : (
             <List>
-              {expenses.map((expense, index) => (
+              {expensesWithUser.map((expense, index) => (
                 <Expense
                   key={index}
                   description={expense.description}
                   amount={expense.amount}
+                  userName={expense.user && expense.user.name}
+                  userColor={expense.user && expense.user.color}
                   onRemove={() => removeExpense(index)}
                 />
               ))}
@@ -59,9 +61,15 @@ const AppRender = ({ expenses, removeExpense, users }) => {
 };
 
 AppRender.propTypes = {
-  expenses: PropTypes.arrayOf(
-    PropTypes.shape({ description: PropTypes.string.isRequired, amount: PropTypes.number.isRequired })
-  ).isRequired,
+  expensesWithUser: PropTypes.shape({
+    amount: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    }),
+    description: PropTypes.string.isRequired,
+  }).isRequired,
   users: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
