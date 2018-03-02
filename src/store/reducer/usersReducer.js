@@ -11,12 +11,12 @@ export const initialState = [
   },
   {
     id: uniqueId('user'),
-    name: 'Lucas',
+    name: 'Farid',
     color: getRandomColor(),
   },
   {
     id: uniqueId('user'),
-    name: 'Farid',
+    name: 'Superman',
     color: getRandomColor(),
   },
 ];

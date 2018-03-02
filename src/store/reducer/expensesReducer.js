@@ -8,27 +8,27 @@ const initialState = [
   {
     amount: randomAmount(),
     userId: randomUserId(),
-    description: 'Some expense',
+    description: 'First Expense',
   },
   {
     amount: randomAmount(),
     userId: randomUserId(),
-    description: 'Some expense',
+    description: 'Second Expense',
   },
   {
     amount: randomAmount(),
     userId: randomUserId(),
-    description: 'Some expense',
+    description: 'Third Expense',
   },
   {
     amount: randomAmount(),
     userId: randomUserId(),
-    description: 'Some expense',
+    description: 'Fourth Expense',
   },
   {
     amount: randomAmount(),
     userId: randomUserId(),
-    description: 'Some expense',
+    description: 'Fifth Expense',
   },
 ];
 
