@@ -9,5 +9,3 @@ export const App = () => (
     <ExpensesPanel />
   </Panels>
 );
-
-App.propTypes = {};
