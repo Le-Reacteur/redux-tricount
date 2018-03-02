@@ -1,36 +1,42 @@
+import { initialState as users } from './usersReducer';
+import { ADD_EXPENSE } from '../../actions';
+
+const randomUserId = () => users[Math.floor(users.length * Math.random())].id;
+const randomAmount = () => Math.floor(Math.random() * 10000) / 100;
+
 const initialState = [
   {
-    amount: 12,
-    userId: 0,
+    amount: randomAmount(),
+    userId: randomUserId(),
     description: 'Some expense',
-    date: new Date('2018-02-01'),
   },
   {
-    amount: 10,
-    userId: 0,
+    amount: randomAmount(),
+    userId: randomUserId(),
     description: 'Some expense',
-    date: new Date('2018-02-01'),
   },
   {
-    amount: 10,
-    userId: 0,
+    amount: randomAmount(),
+    userId: randomUserId(),
     description: 'Some expense',
-    date: new Date('2018-02-01'),
   },
   {
-    amount: 10,
-    userId: 0,
+    amount: randomAmount(),
+    userId: randomUserId(),
     description: 'Some expense',
-    date: new Date('2018-02-01'),
   },
   {
-    amount: 10,
-    userId: 0,
+    amount: randomAmount(),
+    userId: randomUserId(),
     description: 'Some expense',
-    date: new Date('2018-02-01'),
   },
 ];
 
 export const expensesReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case ADD_EXPENSE:
+      return [...state, action.payload];
+    default:
+      return state;
+  }
 };

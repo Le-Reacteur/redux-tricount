@@ -1,15 +1,31 @@
-const initialState = {
-  0: {
+import { uniqueId, getRandomColor } from '../../utils';
+import { ADD_USER } from '../../actions';
+
+// Note: User Id are index of the array
+
+export const initialState = [
+  {
+    id: uniqueId('user'),
     name: 'Etienne',
+    color: getRandomColor(),
   },
-  1: {
+  {
+    id: uniqueId('user'),
     name: 'Lucas',
+    color: getRandomColor(),
   },
-  2: {
+  {
+    id: uniqueId('user'),
     name: 'Farid',
+    color: getRandomColor(),
   },
-};
+];
 
 export const usersReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case ADD_USER:
+      return [...state, action.payload];
+    default:
+      return state;
+  }
 };
