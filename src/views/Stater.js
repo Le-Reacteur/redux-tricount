@@ -4,8 +4,7 @@ import { Panel } from '../components/Panel';
 import { Card } from '../components/Card';
 import { Expense } from '../components/Expense';
 import { List } from '../components/List';
-import { CenteredText } from '../components/CenteredText';
-import { Amount } from '../components/Amount';
+import { User } from '../components/User';
 
 export const Starter = () => (
   <Panels>
@@ -20,9 +19,9 @@ export const Starter = () => (
     </Panel>
     <Panel>
       <Card title="Sum">
-        <CenteredText>
-          <Amount large value={234.67} />
-        </CenteredText>
+        <List>
+          <User name={'Yo'} color={'black'} />
+        </List>
       </Card>
     </Panel>
   </Panels>
