@@ -1,8 +1,6 @@
 import { uniqueId, getRandomColor } from '../../utils';
 import { ADD_USER, REMOVE_USER } from '../../actions';
 
-// Note: User Id are index of the array
-
 export const initialState = [
   {
     id: uniqueId('user'),
