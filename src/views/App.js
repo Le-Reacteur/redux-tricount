@@ -9,6 +9,7 @@ import { List } from '../components/List';
 import { Expense } from '../components/Expense';
 import { User } from '../components/User';
 import { NewExpenseForm } from './NewExpenseForm';
+import { NewUserForm } from './NewUserForm';
 import { removeExpense, removeUser } from '../actions';
 import { CenteredText } from '../components/CenteredText';
 
@@ -45,6 +46,7 @@ const AppRender = ({ expensesWithUser, removeExpense, usersWithSum, removeUser }
             </List>
           )}
         </Card>
+        <NewUserForm />
       </Panel>
       <Panel>
         <Card title="Expenses">
