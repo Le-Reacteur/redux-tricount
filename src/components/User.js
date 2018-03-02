@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import { Amount } from './Amount';
 import { Button } from './Button';
 
+/**
+ * Display an user with it's associated color
+ * If a `onRemove` props is passed, a delete button appear on hover.
+ */
+
 export const User = ({ name, sum, color, onRemove }) => {
   return (
     <div className="user">

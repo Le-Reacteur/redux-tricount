@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Render an amout with the interger bigger
+ */
+
 export const Amount = ({ value, className = '' }) => {
   const leftNum = Math.floor(value);
   const rightNum = Math.abs(Math.floor((value * 100) % 100)).toString();

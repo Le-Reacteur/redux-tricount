@@ -10,9 +10,9 @@ export const Starter = () => (
     <Panel>
       <Card title="Expenses">
         <List>
-          <Expense amount={12.45} description={'An expense for the demo'} userColor={'black'} userName={'Anonymous'} />
-          <Expense amount={34} description={'An other expense'} userColor={'black'} userName={'Anonymous'} />
-          <Expense amount={25} description={'This is quite expensive'} userColor={'black'} userName={'Anonymous'} />
+          <Expense amount={12.45} description={'An expense for the demo'} />
+          <Expense amount={34} description={'An other expense'} />
+          <Expense amount={25} description={'This is quite expensive'} />
         </List>
       </Card>
     </Panel>

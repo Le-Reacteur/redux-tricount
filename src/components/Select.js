@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * A select input, the options props should be a list of object:
+ * { key: 'the-key', text: 'The description' }
+ */
+
 export const Select = ({ options, name, label }) => (
   <div className="select">
     {label && (

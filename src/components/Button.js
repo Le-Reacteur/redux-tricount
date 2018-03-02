@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * A button component
+ */
+
 export const Button = ({
   children,
   submit = false,
