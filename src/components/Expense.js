@@ -22,7 +22,7 @@ export const Expense = ({ amount, description, userName, userColor, onRemove }) 
           </div>
         )}
       </div>
-      <Amount className={onRemove ? 'expense--amount' : ''} value={amount} />
+      <Amount className={onRemove ? 'user--amount' : ''} value={amount} />
       {onRemove && (
         <Button flatStyle dangerStyle className="expense--delete" onClick={onRemove}>
           Delete
