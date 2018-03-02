@@ -8,9 +8,11 @@ import './index.css';
 import { store } from './store';
 import { Provider } from 'react-redux';
 
+import { App } from './views/App';
+
 ReactDOM.render(
   <Provider store={store}>
-    <h1>Hello React</h1>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
