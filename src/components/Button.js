@@ -1,8 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Button = ({ children, submit = false }) => (
-  <button className="button" type={submit ? 'submit' : 'button'}>
+export const Button = ({
+  children,
+  submit = false,
+  flatStyle = false,
+  className = '',
+  dangerStyle = false,
+  onClick,
+}) => (
+  <button
+    className={['button', flatStyle ? 'button--flat' : '', className, dangerStyle ? 'button--danger' : ''].join(' ')}
+    type={submit ? 'submit' : 'button'}
+    onClick={onClick}
+  >
     {children}
   </button>
 );
@@ -10,4 +21,8 @@ export const Button = ({ children, submit = false }) => (
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   submit: PropTypes.bool,
+  flatStyle: PropTypes.bool,
+  dangerStyle: PropTypes.bool,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
 };

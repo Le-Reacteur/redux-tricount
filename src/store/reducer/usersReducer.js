@@ -1,5 +1,5 @@
 import { uniqueId, getRandomColor } from '../../utils';
-import { ADD_USER } from '../../actions';
+import { ADD_USER, REMOVE_USER } from '../../actions';
 
 // Note: User Id are index of the array
 
@@ -25,6 +25,8 @@ export const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER:
       return [...state, action.payload];
+    case REMOVE_USER:
+      return state.filter(user => user.id !== action.payload);
     default:
       return state;
   }

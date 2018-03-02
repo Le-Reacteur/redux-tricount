@@ -10,7 +10,7 @@ import { List } from '../components/List';
 import { Input } from '../components/Input';
 import { CustomPropTypes, selectUsersWithSum } from '../selectors';
 import { extractDataFromSubmitEvent, clearFormFromSubmitEvent } from '../utils';
-import { addUser } from '../actions';
+import { addUser, removeUser } from '../actions';
 
 const mapStateToProps = state => ({
   usersWithSum: selectUsersWithSum(state),
@@ -18,12 +18,17 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addUser,
+  removeUser,
 };
 
-const UsersPanelRender = ({ usersWithSum, addUser }) => (
+const UsersPanelRender = ({ usersWithSum, addUser, removeUser }) => (
   <Panel>
     <Card title="Users">
-      <List>{usersWithSum.map(user => <User key={user.id} name={user.name} color={user.color} sum={user.sum} />)}</List>
+      <List>
+        {usersWithSum.map(user => (
+          <User key={user.id} name={user.name} color={user.color} sum={user.sum} onRemove={() => removeUser(user.id)} />
+        ))}
+      </List>
     </Card>
     <form
       onSubmit={e => {
@@ -51,6 +56,7 @@ const UsersPanelRender = ({ usersWithSum, addUser }) => (
 UsersPanelRender.propTypes = {
   usersWithSum: CustomPropTypes.usersWithSum.isRequired,
   addUser: PropTypes.func.isRequired,
+  removeUser: PropTypes.func.isRequired,
 };
 
 export const UsersPanel = connect(mapStateToProps, mapDispatchToProps)(UsersPanelRender);

@@ -105,6 +105,20 @@ p {
   box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.19), 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
+.button.button--flat {
+  box-shadow: none;
+}
+
+.button.button--danger {
+  background: #ef5350;
+  border: 0.1rem solid #ef5350;
+}
+
+.button.button--danger:hover {
+  background: #e57373;
+  border: 0.1rem solid #e57373;
+}
+
 /* ButtonContainer */
 
 .button-container {
@@ -192,6 +206,7 @@ p {
   flex-direction: row;
   align-items: center;
   justify-content: stretch;
+  position: relative;
 }
 
 .user .user--img {
@@ -206,6 +221,30 @@ p {
 .user .user--name {
   font-size: 2rem;
   flex: 1;
+}
+
+.user .user--delete {
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  top: 50%;
+  transform: translate(20px, -50%);
+  transition-duration: 0.3s;
+}
+
+.user:hover .user--delete {
+  display: block;
+  transform: translate(-10px, -50%);
+  opacity: 1;
+}
+
+.user .user--amount {
+  transition-duration: 0.3s;
+  opacity: 1;
+}
+
+.user:hover .user--amount {
+  opacity: 0;
 }
 
 /* Input */

@@ -15,6 +15,10 @@ export const addUser = userName => {
   };
 };
 
+export const REMOVE_USER = 'DELETE_USER';
+
+export const removeUser = userId => ({ type: REMOVE_USER, payload: userId });
+
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 
 export const addExpense = (userId, amount, description) => {
