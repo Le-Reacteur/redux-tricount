@@ -1,27 +1,34 @@
+import { initialState as users } from './usersReducer';
 import { ADD_EXPENSE, REMOVE_EXPENSE } from '../../actions';
 
+const randomUserId = () => users[Math.floor(users.length * Math.random())].id;
 const randomAmount = () => Math.floor(Math.random() * 10000) / 100;
 
 const initialState = [
   {
     amount: randomAmount(),
     description: 'First Expense',
+    userId: randomUserId(),
   },
   {
     amount: randomAmount(),
     description: 'Second Expense',
+    userId: randomUserId(),
   },
   {
     amount: randomAmount(),
     description: 'Third Expense',
+    userId: randomUserId(),
   },
   {
     amount: randomAmount(),
     description: 'Fourth Expense',
+    userId: randomUserId(),
   },
   {
     amount: randomAmount(),
     description: 'Fifth Expense',
+    userId: randomUserId(),
   },
 ];
 
