@@ -3,23 +3,23 @@ const randomAmount = () => Math.floor(Math.random() * 10000) / 100;
 const initialState = [
   {
     amount: randomAmount(),
-    description: 'Some expense',
+    description: 'First Expense',
   },
   {
     amount: randomAmount(),
-    description: 'Some expense',
+    description: 'Second Expense',
   },
   {
     amount: randomAmount(),
-    description: 'Some expense',
+    description: 'Third Expense',
   },
   {
     amount: randomAmount(),
-    description: 'Some expense',
+    description: 'Fourth Expense',
   },
   {
     amount: randomAmount(),
-    description: 'Some expense',
+    description: 'Fifth Expense',
   },
 ];
 
