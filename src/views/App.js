@@ -1,20 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { selectExpenses } from '../selectors';
 import { Panels } from '../components/Panels';
 import { Panel } from '../components/Panel';
 import { Card } from '../components/Card';
 import { List } from '../components/List';
 import { Expense } from '../components/Expense';
 
-export const App = () => (
-  <Panels>
-    <Panel>
-      <Card title="Expenses">
-        <List>
-          <Expense description="First expense" amount={10.5} />
-          <Expense description="Second expense" amount={25} />
-          <Expense description="Third expense" amount={42.42} />
-        </List>
-      </Card>
-    </Panel>
-  </Panels>
-);
+const mapStateToProps = state => ({
+  expenses: selectExpenses(state),
+});
+
+const AppRender = ({ expenses }) => {
+  console.log(expenses);
+  return (
+    <Panels>
+      <Panel>
+        <Card title="Expenses">
+          <List>
+            {expenses.map((expense, index) => (
+              <Expense key={index} description={expense.description} amount={expense.amount} />
+            ))}
+          </List>
+        </Card>
+      </Panel>
+    </Panels>
+  );
+};
+
+AppRender.propTypes = {
+  expenses: PropTypes.arrayOf(
+    PropTypes.shape({ description: PropTypes.string.isRequired, amount: PropTypes.number.isRequired })
+  ).isRequired,
+};
+
+export const App = connect(mapStateToProps)(AppRender);
