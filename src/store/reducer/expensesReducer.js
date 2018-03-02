@@ -21,3 +21,8 @@ const initialState = [
     amount: randomAmount(),
     description: 'Fifth Expense',
   },
+];
+
+export const expensesReducer = (state = initialState, action) => {
+  return state;
+};
