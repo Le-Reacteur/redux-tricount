@@ -1,13 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { ButtonContainer } from '../components/ButtonContainer';
 import { Input } from '../components/Input';
-import { Select } from '../components/Select';
-import { CustomPropTypes, selectUsers } from '../selectors';
-import { extractDataFromSubmitEvent, clearFormFromSubmitEvent } from '../utils';
+import { extractDataFromSubmitEvent, clearFormFromSubmitEvent, Validator } from '../utils';
 
 export const NewExpenseForm = () => {
   return (
@@ -16,17 +12,18 @@ export const NewExpenseForm = () => {
         e.preventDefault();
         const data = extractDataFromSubmitEvent(e);
         // Validate data
-        const amountStr = (data.amount || '').replace(/,/g, '.');
-        const amount = parseFloat(amountStr, 10);
-        if (Number.isNaN(amount)) {
-          alert('Amount must be a valid number');
+        const validated = Validator.validate(
+          Validator.schema({
+            description: Validator.notEmptyStr('You must provide a description'),
+            amount: Validator.numberFromString('Amount must be a valid number'),
+          }),
+          data
+        );
+        if (validated.error) {
+          alert(validated.error);
           return;
         }
-        if (!data.description) {
-          alert('You must provide a description');
-          return;
-        }
-        console.log(data);
+        console.log(validated.value);
         clearFormFromSubmitEvent(e);
       }}
     >

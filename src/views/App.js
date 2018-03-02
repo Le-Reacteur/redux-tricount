@@ -7,6 +7,7 @@ import { Panel } from '../components/Panel';
 import { Card } from '../components/Card';
 import { List } from '../components/List';
 import { Expense } from '../components/Expense';
+import { NewExpenseForm } from './NewExpenseForm';
 
 const mapStateToProps = state => ({
   expenses: selectExpenses(state),
@@ -23,6 +24,7 @@ const AppRender = ({ expenses }) => {
             ))}
           </List>
         </Card>
+        <NewExpenseForm />
       </Panel>
     </Panels>
   );
