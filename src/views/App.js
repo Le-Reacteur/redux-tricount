@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { selectExpenses } from '../selectors';
+import { selectExpenses, selectUsers } from '../selectors';
 import { Panels } from '../components/Panels';
 import { Panel } from '../components/Panel';
 import { Card } from '../components/Card';
@@ -15,23 +15,25 @@ import { Amount } from '../components/Amount';
 
 const mapStateToProps = state => ({
   expenses: selectExpenses(state),
+  users: selectUsers(state),
 });
 
 const mapDispatchToProps = {
   removeExpense,
 };
 
-const AppRender = ({ expenses, removeExpense }) => {
+const AppRender = ({ expenses, removeExpense, users }) => {
   const noExpenses = expenses.length === 0;
+  const noUsers = users.length === 0;
   return (
     <Panels>
       <Panel>
         <Card title="Users">
-          <List>
-            <User name="Farid" color="green" />
-            <User name="Etienne" color="blue" />
-            <User name="Superman" color="red" />
-          </List>
+          {noUsers ? (
+            <CenteredText>You don't have any users, use the form below to add one</CenteredText>
+          ) : (
+            <List>{users.map(user => <User key={user.id} name={user.name} color={user.color} />)}</List>
+          )}
         </Card>
       </Panel>
       <Panel>
@@ -60,6 +62,13 @@ const AppRender = ({ expenses, removeExpense }) => {
 AppRender.propTypes = {
   expenses: PropTypes.arrayOf(
     PropTypes.shape({ description: PropTypes.string.isRequired, amount: PropTypes.number.isRequired })
+  ).isRequired,
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+    })
   ).isRequired,
   removeExpense: PropTypes.func.isRequired,
 };
