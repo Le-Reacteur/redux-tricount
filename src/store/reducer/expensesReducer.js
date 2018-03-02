@@ -1,3 +1,5 @@
+import { ADD_EXPENSE } from '../../actions';
+
 const randomAmount = () => Math.floor(Math.random() * 10000) / 100;
 
 const initialState = [
@@ -24,5 +26,10 @@ const initialState = [
 ];
 
 export const expensesReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case ADD_EXPENSE:
+      return [...state, action.payload];
+    default:
+      return state;
+  }
 };
