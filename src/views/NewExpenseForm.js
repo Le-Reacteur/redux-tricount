@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { ButtonContainer } from '../components/ButtonContainer';
@@ -44,6 +45,10 @@ const NewExpenseFormRender = ({ addExpense }) => {
       </ButtonContainer>
     </form>
   );
+};
+
+NewExpenseFormRender.propTypes = {
+  addExpense: PropTypes.func.isRequired,
 };
 
 export const NewExpenseForm = connect(mapStateToProps, mapDispatchToProps)(NewExpenseFormRender);
