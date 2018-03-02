@@ -8,16 +8,20 @@ import { Input } from '../components/Input';
 import { extractDataFromSubmitEvent, clearFormFromSubmitEvent, Validator } from '../utils';
 import { addExpense } from '../actions';
 import { connect } from 'react-redux';
-import { selectUsers } from '../selectors';
+import { selectUsers, CustomPropTypes } from '../selectors';
 
 const mapStateToProps = state => ({
   users: selectUsers(state),
 });
+
 const mapDispatchToProps = {
   addExpense,
 };
 
-const NewExpenseFormRender = ({ addExpense, users }) => {
+const NewExpenseFormRender = ({ expensesWithUsers, users, addExpense, removeExpense }) => {
+  if (users.length === 0) {
+    return null;
+  }
   return (
     <form
       onSubmit={e => {
@@ -61,14 +65,8 @@ const NewExpenseFormRender = ({ addExpense, users }) => {
 };
 
 NewExpenseFormRender.propTypes = {
+  users: CustomPropTypes.users.isRequired,
   addExpense: PropTypes.func.isRequired,
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      color: PropTypes.string.isRequired,
-    })
-  ).isRequired,
 };
 
 export const NewExpenseForm = connect(mapStateToProps, mapDispatchToProps)(NewExpenseFormRender);

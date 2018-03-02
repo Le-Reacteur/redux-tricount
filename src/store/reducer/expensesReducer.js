@@ -1,5 +1,5 @@
 import { initialState as users } from './usersReducer';
-import { ADD_EXPENSE, REMOVE_EXPENSE, REMOVE_USER } from '../../actions';
+import { ADD_EXPENSE, REMOVE_USER, REMOVE_EXPENSE } from '../../actions';
 
 const randomUserId = () => users[Math.floor(users.length * Math.random())].id;
 const randomAmount = () => Math.floor(Math.random() * 10000) / 100;
