@@ -14,7 +14,6 @@ const mapStateToProps = state => ({
 });
 
 const AppRender = ({ expenses }) => {
-  console.log(expenses);
   return (
     <Panels>
       <Panel>
