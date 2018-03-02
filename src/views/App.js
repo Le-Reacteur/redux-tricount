@@ -10,6 +10,7 @@ import { Expense } from '../components/Expense';
 import { NewExpenseForm } from './NewExpenseForm';
 import { removeExpense } from '../actions';
 import { CenteredText } from '../components/CenteredText';
+import { Amount } from '../components/Amount';
 
 const mapStateToProps = state => ({
   expenses: selectExpenses(state),
@@ -41,6 +42,13 @@ const AppRender = ({ expenses, removeExpense }) => {
           )}
         </Card>
         <NewExpenseForm />
+      </Panel>
+      <Panel>
+        <Card title="Sum">
+          <CenteredText>
+            <Amount large value={123} />
+          </CenteredText>
+        </Card>
       </Panel>
     </Panels>
   );
