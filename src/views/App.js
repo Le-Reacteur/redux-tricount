@@ -9,6 +9,7 @@ import { List } from '../components/List';
 import { Expense } from '../components/Expense';
 import { NewExpenseForm } from './NewExpenseForm';
 import { removeExpense } from '../actions';
+import { CenteredText } from '../components/CenteredText';
 
 const mapStateToProps = state => ({
   expenses: selectExpenses(state),
@@ -19,20 +20,25 @@ const mapDispatchToProps = {
 };
 
 const AppRender = ({ expenses, removeExpense }) => {
+  const noExpenses = expenses.length === 0;
   return (
     <Panels>
       <Panel>
         <Card title="Expenses">
-          <List>
-            {expenses.map((expense, index) => (
-              <Expense
-                key={index}
-                description={expense.description}
-                amount={expense.amount}
-                onRemove={() => removeExpense(index)}
-              />
-            ))}
-          </List>
+          {noExpenses ? (
+            <CenteredText>You don't have any expenses, use the form below to add one</CenteredText>
+          ) : (
+            <List>
+              {expenses.map((expense, index) => (
+                <Expense
+                  key={index}
+                  description={expense.description}
+                  amount={expense.amount}
+                  onRemove={() => removeExpense(index)}
+                />
+              ))}
+            </List>
+          )}
         </Card>
         <NewExpenseForm />
       </Panel>
