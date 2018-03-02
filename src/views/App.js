@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { selectExpensesWithUser, selectUsers } from '../selectors';
+import { selectExpensesWithUser, selectUsersWithSum } from '../selectors';
 import { Panels } from '../components/Panels';
 import { Panel } from '../components/Panel';
 import { Card } from '../components/Card';
@@ -14,16 +14,16 @@ import { CenteredText } from '../components/CenteredText';
 
 const mapStateToProps = state => ({
   expensesWithUser: selectExpensesWithUser(state),
-  users: selectUsers(state),
+  usersWithSum: selectUsersWithSum(state),
 });
 
 const mapDispatchToProps = {
   removeExpense,
 };
 
-const AppRender = ({ expensesWithUser, removeExpense, users }) => {
+const AppRender = ({ expensesWithUser, removeExpense, usersWithSum }) => {
   const noExpenses = expensesWithUser.length === 0;
-  const noUsers = users.length === 0;
+  const noUsers = usersWithSum.length === 0;
   return (
     <Panels>
       <Panel>
@@ -31,7 +31,9 @@ const AppRender = ({ expensesWithUser, removeExpense, users }) => {
           {noUsers ? (
             <CenteredText>You don't have any users, use the form below to add one</CenteredText>
           ) : (
-            <List>{users.map(user => <User key={user.id} name={user.name} color={user.color} />)}</List>
+            <List>
+              {usersWithSum.map(user => <User key={user.id} name={user.name} color={user.color} sum={user.sum} />)}
+            </List>
           )}
         </Card>
       </Panel>
@@ -70,11 +72,12 @@ AppRender.propTypes = {
     }),
     description: PropTypes.string.isRequired,
   }).isRequired,
-  users: PropTypes.arrayOf(
+  usersWithSum: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
+      sum: PropTypes.number.isRequired,
     })
   ).isRequired,
   removeExpense: PropTypes.func.isRequired,

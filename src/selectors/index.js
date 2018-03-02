@@ -18,3 +18,18 @@ export function selectExpensesWithUser(state) {
     };
   });
 }
+
+export function selectUsersWithSum(state) {
+  const users = selectUsers(state);
+  const expenses = selectExpenses(state);
+  const usersWithSum = users.map(user => {
+    const sum = expenses
+      .filter(expense => expense.userId === user.id)
+      .reduce((acc, expense) => acc + expense.amount, 0);
+    return {
+      ...user,
+      sum,
+    };
+  });
+  return usersWithSum;
+}
