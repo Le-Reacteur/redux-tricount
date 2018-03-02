@@ -5,4 +5,12 @@ import 'normalize.css';
 import 'milligram';
 import './index.css';
 
-ReactDOM.render(<h1>Hello React</h1>, document.getElementById('root'));
+import { store } from './store';
+import { Provider } from 'react-redux';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <h1>Hello React</h1>
+  </Provider>,
+  document.getElementById('root')
+);
