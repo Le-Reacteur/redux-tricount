@@ -216,12 +216,16 @@ p {
 
 .amount .amount--small-num {
   font-weight: 100;
-  font-size: 2.4rem;
+  font-size: 0.7em;
 }
 
 .amount .amount--currency {
   margin-left: 1rem;
   font-weight: 400;
+}
+
+.amount.amount--large {
+  font-size: 6rem;
 }
 
 /* User */

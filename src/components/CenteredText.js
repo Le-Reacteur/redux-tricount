@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 export const CenteredText = ({ children }) => (
   <div className="centered-text">
-    <p>{children}</p>
+    <div>{children}</div>
   </div>
 );
 
