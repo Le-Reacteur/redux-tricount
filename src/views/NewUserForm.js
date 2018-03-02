@@ -5,7 +5,7 @@ import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { ButtonContainer } from '../components/ButtonContainer';
 import { Input } from '../components/Input';
-import { extractDataFromSubmitEvent, clearFormFromSubmitEvent } from '../utils';
+import { extractDataFromSubmitEvent, clearFormFromSubmitEvent, Validator } from '../utils';
 import { addUser } from '../actions';
 
 const mapStateToProps = null;
@@ -21,11 +21,17 @@ const NewUserFormRender = ({ addUser }) => {
         e.preventDefault();
         const data = extractDataFromSubmitEvent(e);
         // Validate data
-        if (!data.username) {
-          alert('No name ?');
+        const validated = Validator.validate(
+          Validator.schema({
+            username: Validator.notEmptyStr('No name ?'),
+          }),
+          data
+        );
+        if (validated.error) {
+          alert(validated.error);
           return;
         }
-        addUser(data.username);
+        addUser(validated.value.username);
         clearFormFromSubmitEvent(e);
       }}
     >
