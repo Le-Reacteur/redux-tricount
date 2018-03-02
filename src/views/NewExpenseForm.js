@@ -7,7 +7,7 @@ import { ButtonContainer } from '../components/ButtonContainer';
 import { Input } from '../components/Input';
 import { Select } from '../components/Select';
 import { CustomPropTypes, selectUsers } from '../selectors';
-import { extractDataFromSubmitEvent, clearFormFromSubmitEvent } from '../utils';
+import { extractDataFromSubmitEvent, clearFormFromSubmitEvent, Validator } from '../utils';
 import { addExpense } from '../actions';
 
 const mapStateToProps = state => ({
@@ -28,25 +28,23 @@ const NewExpenseFormRender = ({ expensesWithUsers, users, addExpense, removeExpe
         e.preventDefault();
         const data = extractDataFromSubmitEvent(e);
         // Validate data
-        const amountStr = (data.amount || '').replace(/,/g, '.');
-        const amount = parseFloat(amountStr, 10);
-        if (Number.isNaN(amount)) {
-          alert('Amount must be a valid number');
+        const validated = Validator.validate(
+          Validator.schema({
+            userId: Validator.notEqualWrapper(
+              Validator.notEmptyStr('Missing UserId'),
+              'none',
+              'Please select a User !'
+            ),
+            description: Validator.notEmptyStr('You must provide a description'),
+            amount: Validator.numberFromString('Amount must be a valid number'),
+          }),
+          data
+        );
+        if (validated.error) {
+          alert(validated.error);
           return;
         }
-        if (!data.userId) {
-          alert('Invalid user');
-          return;
-        }
-        if (data.userId === 'none') {
-          alert('You must select an user');
-          return;
-        }
-        if (!data.description) {
-          alert('You must provide a description');
-          return;
-        }
-        addExpense(data.userId, amount, data.description);
+        addExpense(validated.value.userId, validated.value.amount, validated.value.description);
         clearFormFromSubmitEvent(e);
       }}
     >
