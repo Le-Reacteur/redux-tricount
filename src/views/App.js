@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { selectExpenses } from '../selectors';
+import { selectExpenses, selectSum } from '../selectors';
 import { Panels } from '../components/Panels';
 import { Panel } from '../components/Panel';
 import { Card } from '../components/Card';
@@ -14,13 +14,14 @@ import { Amount } from '../components/Amount';
 
 const mapStateToProps = state => ({
   expenses: selectExpenses(state),
+  sum: selectSum(state),
 });
 
 const mapDispatchToProps = {
   removeExpense,
 };
 
-const AppRender = ({ expenses, removeExpense }) => {
+const AppRender = ({ expenses, removeExpense, sum }) => {
   const noExpenses = expenses.length === 0;
   return (
     <Panels>
@@ -46,7 +47,7 @@ const AppRender = ({ expenses, removeExpense }) => {
       <Panel>
         <Card title="Sum">
           <CenteredText>
-            <Amount large value={123} />
+            <Amount large value={sum} />
           </CenteredText>
         </Card>
       </Panel>
@@ -58,6 +59,7 @@ AppRender.propTypes = {
   expenses: PropTypes.arrayOf(
     PropTypes.shape({ description: PropTypes.string.isRequired, amount: PropTypes.number.isRequired })
   ).isRequired,
+  sum: PropTypes.number.isRequired,
   removeExpense: PropTypes.func.isRequired,
 };
 
