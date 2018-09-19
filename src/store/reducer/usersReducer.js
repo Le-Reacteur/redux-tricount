@@ -1,5 +1,5 @@
 import { uniqueId, getRandomColor } from '../../utils';
-import { ADD_USER, REMOVE_USER } from '../../actions';
+import { REMOVE_USER, ADD_USER } from '../../actions';
 
 export const initialState = [
   {

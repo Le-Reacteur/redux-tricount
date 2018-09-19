@@ -7,28 +7,28 @@ const randomAmount = () => Math.floor(Math.random() * 10000) / 100;
 const initialState = [
   {
     amount: randomAmount(),
-    userId: randomUserId(),
     description: 'First Expense',
+    userId: randomUserId(),
   },
   {
     amount: randomAmount(),
-    userId: randomUserId(),
     description: 'Second Expense',
+    userId: randomUserId(),
   },
   {
     amount: randomAmount(),
-    userId: randomUserId(),
     description: 'Third Expense',
+    userId: randomUserId(),
   },
   {
     amount: randomAmount(),
-    userId: randomUserId(),
     description: 'Fourth Expense',
+    userId: randomUserId(),
   },
   {
     amount: randomAmount(),
-    userId: randomUserId(),
     description: 'Fifth Expense',
+    userId: randomUserId(),
   },
 ];
 
@@ -37,7 +37,7 @@ export const expensesReducer = (state = initialState, action) => {
     case ADD_EXPENSE:
       return [...state, action.payload];
     case REMOVE_EXPENSE:
-      return state.filter((v, i) => i !== action.payload);
+      return state.filter((expense, index) => index !== action.payload);
     // When a user is removed, we remove all it's expenses
     case REMOVE_USER:
       return state.filter(expense => expense.userId !== action.payload);

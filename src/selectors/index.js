@@ -44,27 +44,12 @@ export const CustomPropTypes = {
 
 // Selectors
 
-export function selectUsers(state) {
-  return state.users;
-}
-
 export function selectExpenses(state) {
   return state.expenses;
 }
 
-export function selectUsersWithSum(state) {
-  const users = selectUsers(state);
-  const expenses = selectExpenses(state);
-  const usersWithSum = users.map(user => {
-    const sum = expenses
-      .filter(expense => expense.userId === user.id)
-      .reduce((acc, expense) => acc + expense.amount, 0);
-    return {
-      ...user,
-      sum,
-    };
-  });
-  return usersWithSum;
+export function selectUsers(state) {
+  return state.users;
 }
 
 export function selectExpensesWithUser(state) {
@@ -80,10 +65,17 @@ export function selectExpensesWithUser(state) {
   });
 }
 
-export function selectUsersByIds(state) {
+export function selectUsersWithSum(state) {
   const users = selectUsers(state);
-  return users.reduce((acc, user) => {
-    acc[user.id] = user.name;
-    return acc;
-  }, {});
+  const expenses = selectExpenses(state);
+  const usersWithSum = users.map(user => {
+    const sum = expenses
+      .filter(expense => expense.userId === user.id)
+      .reduce((acc, expense) => acc + expense.amount, 0);
+    return {
+      ...user,
+      sum,
+    };
+  });
+  return usersWithSum;
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
+import { Select } from '../components/Select';
 import { ButtonContainer } from '../components/ButtonContainer';
 import { Input } from '../components/Input';
-import { Select } from '../components/Select';
-import { CustomPropTypes, selectUsers } from '../selectors';
 import { extractDataFromSubmitEvent, clearFormFromSubmitEvent, Validator } from '../utils';
 import { addExpense } from '../actions';
+import { connect } from 'react-redux';
+import { selectUsers, CustomPropTypes } from '../selectors';
 
 const mapStateToProps = state => ({
   users: selectUsers(state),
