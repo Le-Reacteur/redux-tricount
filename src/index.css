@@ -4,6 +4,15 @@ html {
   letter-spacing: 0;
 }
 
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+}
+
 h1,
 h2,
 h3,
