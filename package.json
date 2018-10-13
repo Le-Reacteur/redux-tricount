@@ -16,7 +16,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "render": "NODE_ENV=production babel-node ./render.js --presets @babel/preset-env,@babel/preset-react",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://tricount.surge.sh"
+  "homepage": "https://tricount.surge.sh",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
+  }
 }
